@@ -1,7 +1,7 @@
 import React from 'react';
 import './GoButton.css';
 
-const LIVEMODE = false;
+const LIVEMODE = true;
 const STRIPE_TEST_KEY = 'pk_test_5s2Vc5ZM6phLbvYeRF72lcA5';
 const STRIPE_LIVE_KEY = 'pk_live_QoGt8JpXCbfBuiipW6CtMxmg';
 const STRIPE_KEY = LIVEMODE ? STRIPE_LIVE_KEY : STRIPE_TEST_KEY;
