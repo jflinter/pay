@@ -1,11 +1,16 @@
+.button-container {
+  padding: 0 8px;
+}
+
 .pure-button {
-  margin: 0 5px 20px 5px;
-  width: 90%;
+  margin-bottom: 20px;
+  width: 100%;
   background-color: #FFFAE3;
   color: #917EBC;
-  font-family: 'Timmana', sans-serif;
+  font-family: 'Asap', sans-serif;
+  font-weight: 500;
+  font-style: italic;
   font-size: 24px;
-  padding-bottom: 5px;
 }
 
 #lastButton {

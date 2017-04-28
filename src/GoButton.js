@@ -111,7 +111,7 @@ function GoButton(props) {
 
   const buttonClass = (props.type && props.amount && props.amount > 0) ? 'pure-button pure-button-primary button-xlarge' : 'pure-button pure-button-disabled button-xlarge';
   return (
-    <button id="goButton" className={buttonClass} onClick={handleClick}>Go!</button>
+    <div id="go-button-container"><button id="goButton" className={buttonClass} onClick={handleClick}>Go!</button></div>
   )
 }
 

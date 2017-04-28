@@ -3,5 +3,9 @@
 	color: #FFFAE3;
 	font-size: 40px;
 	line-height: 1;
+	margin: 0;
 }
 
+#go-button-container {
+	padding: 0 7px;
+}

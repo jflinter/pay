@@ -20,20 +20,20 @@ class PaymentButtons extends Component {
           </div>
           {this.state.applePayEnabled > 0 &&
             <div id="applepaybutton" className="pure-u-1-2">
-              <button className={getClassName('applepay')} onClick={() => this.props.onType('applepay')}>Apple Pay</button>
+              <div className="button-container"><button className={getClassName('applepay')} onClick={() => this.props.onType('applepay')}>Apple Pay</button></div>
             </div>
           }
           <div className="pure-u-1-2">
-            <button className={getClassName('venmo')} onClick={() => this.props.onType('venmo')}>Venmo</button>
+            <div className="button-container"><button className={getClassName('venmo')} onClick={() => this.props.onType('venmo')}>Venmo</button></div>
           </div>
           <div className="pure-u-1-2">
-            <button className={getClassName('paypal')} onClick={() => this.props.onType('paypal')}>PayPal</button>
+            <div className="button-container"><button className={getClassName('paypal')} onClick={() => this.props.onType('paypal')}>PayPal</button></div>
           </div>
           <div className="pure-u-1-2">
-            <button className={getClassName('squarecash')} onClick={() => this.props.onType('squarecash')}>Square Cash</button>
+            <div className="button-container"><button className={getClassName('squarecash')} onClick={() => this.props.onType('squarecash')}>Square Cash</button></div>
           </div>
           <div id="lastButton" className="pure-u-1-2">
-            <button className={getClassName('creditcard')} onClick={() => this.props.onType('creditcard')}>Credit Card</button>
+            <div className="button-container"><button className={getClassName('creditcard')} onClick={() => this.props.onType('creditcard')}>Credit Card</button></div>
           </div>
         </div>
       </div>
