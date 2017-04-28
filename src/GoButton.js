@@ -47,6 +47,9 @@ function GoButton(props) {
         const handler = window.StripeCheckout.configure({
           key: STRIPE_KEY,
           panelLabel: 'Pay Jack',
+          image: 'jack.jpg',
+          name: 'Jack Flintermann',
+          description: 'The Payment Experience',
           token: function(token) {
             fetch(BACKEND, {
               method: 'POST',
@@ -90,7 +93,7 @@ function GoButton(props) {
               body: JSON.stringify({
                 live: LIVEMODE,
                 source: result.token.id,
-                email: result.shippingContact.email,
+                email: result.shippingContact.emailAddress,
                 amount: props.amount,
               }),
             }).then(token => {
