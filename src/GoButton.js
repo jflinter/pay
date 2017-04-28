@@ -60,10 +60,8 @@ function GoButton(props) {
                 email: token.email,
                 amount: props.amount,
               }),
-            }).then(token => {
-              // TODO
-            }).catch(error => {
-              // TODO
+            }).catch( (error) => {
+              alert("Your payment failed, despite the checkmark you saw. Try a different method.")
             });
           }
         });
@@ -98,11 +96,10 @@ function GoButton(props) {
             }).then(token => {
               completion(window.ApplePaySession.STATUS_SUCCESS);
             }).catch(error => {
-              // TODO
               completion(window.ApplePaySession.STATUS_FAILURE);
             });
         }, function(error) {
-          // TODO
+          alert('Apple Pay is broken, sorry. Pick something else.')
           console.log(error.message);
         });
         session.begin();
