@@ -20,7 +20,7 @@ class App extends Component {
     super(props);
     this.state = {
       amount: toCents(getUrlParameter('amount')),
-      type: null,
+      type: window.ApplePaySession && window.ApplePaySession.canMakePayments() ? 'applepay' : 'venmo',
     };
   }
   handleAmount = (event) => {
@@ -37,7 +37,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="pure-g">
-          <div className="pure-u-1-1">
+          <div className="pure-u-1">
             <PaymentForm amount={this.state.amount} onAmount={this.handleAmount}/>
             <PaymentButtons type={this.state.type} onType={this.handleType}/>
             <GoButton amount={this.state.amount} type={this.state.type}/>

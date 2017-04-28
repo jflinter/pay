@@ -1,7 +1,11 @@
 import React from 'react';
 import './GoButton.css';
 
-const TEST_BACKEND = 'https://runkit.io/jack/59019ef9cb079300129c7040/branches/master/charges';
+const LIVEMODE = false;
+const STRIPE_TEST_KEY = 'pk_test_5s2Vc5ZM6phLbvYeRF72lcA5';
+const STRIPE_LIVE_KEY = 'pk_live_QoGt8JpXCbfBuiipW6CtMxmg';
+const STRIPE_KEY = LIVEMODE ? STRIPE_LIVE_KEY : STRIPE_TEST_KEY;
+const BACKEND = 'https://runkit.io/jack/59019ef9cb079300129c7040/branches/master/charges';
 
 const serialize = function(obj) {
   var str = [];
@@ -41,17 +45,17 @@ function GoButton(props) {
         break;
       case 'creditcard':
         const handler = window.StripeCheckout.configure({
-          key: 'pk_test_6pRNASCoBOKtIshFeQd4XMUh',
-          image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-          locale: 'auto',
+          key: STRIPE_KEY,
+          panelLabel: 'Pay Jack',
           token: function(token) {
-            fetch(TEST_BACKEND, {
+            fetch(BACKEND, {
               method: 'POST',
               mode: 'cors',
               headers: {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
+                live: LIVEMODE,
                 source: token.id,
                 email: token.email,
                 amount: props.amount,
@@ -64,30 +68,29 @@ function GoButton(props) {
           }
         });
         handler.open({
-          name: 'Jack',
-          description: '2 widgets',
           amount: props.amount,
         });
         break;
       case 'applepay':
-        const stripe = window.Stripe('pk_live_4TDXxHqrDOTtrermv7uhlFHG');
+        window.Stripe.setPublishableKey(STRIPE_KEY);
         const paymentRequest = {
           countryCode: 'US',
           currencyCode: 'USD',
           requiredShippingContactFields: ['email'],
           total: {
             label: 'Jack',
-            amount: (parseFloat(this.props.amount) / 100).toFixed(2),
+            amount: (parseFloat(props.amount) / 100).toFixed(2),
           }
         };
-        const session = stripe.applePay.buildSession(paymentRequest, function(result, completion) {
-          fetch(TEST_BACKEND, {
+        const session = window.Stripe.applePay.buildSession(paymentRequest, function(result, completion) {
+          fetch(BACKEND, {
               method: 'POST',
               mode: 'cors',
               headers: {
                 'Content-Type': 'application/json'
               },
               body: JSON.stringify({
+                live: LIVEMODE,
                 source: result.token.id,
                 email: result.shippingContact.email,
                 amount: props.amount,
@@ -111,7 +114,7 @@ function GoButton(props) {
 
   const buttonClass = (props.type && props.amount && props.amount > 0) ? 'pure-button pure-button-primary button-xlarge' : 'pure-button pure-button-disabled button-xlarge';
   return (
-    <button className={buttonClass} onClick={handleClick}>Go</button>
+    <button id="goButton" className={buttonClass} onClick={handleClick}>Go!</button>
   )
 }
 

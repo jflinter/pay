@@ -5,16 +5,8 @@ class PaymentButtons extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      applePayEnabled: false
+      applePayEnabled: window.ApplePaySession && window.ApplePaySession.canMakePayments()
     }
-  }
-  componentDidMount() {
-    const availability = (available) => {
-      this.setState({
-        applePayEnabled: available
-      })
-    }
-    window.Stripe.applePay.checkAvailability(availability);
   }
   render() {
     const getClassName = (type) => {
@@ -24,25 +16,25 @@ class PaymentButtons extends Component {
       <div>
         <div className="pure-g">
           <div className="pure-u-1-1">
-            <p>Using</p>
-          </div>
-          <div className="pure-u-1-3">
-            <button className={getClassName('venmo')} onClick={() => this.props.onType('venmo')}>Venmo</button>
-          </div>
-          <div className="pure-u-1-3">
-            <button className={getClassName('paypal')} onClick={() => this.props.onType('paypal')}>PayPal</button>
-          </div>
-          <div className="pure-u-1-3">
-            <button className={getClassName('squarecash')} onClick={() => this.props.onType('squarecash')}>Square Cash</button>
-          </div>
-          <div className="pure-u-1-3">
-            <button className={getClassName('creditcard')} onClick={() => this.props.onType('creditcard')}>Credit Card</button>
+            <h1>via</h1>
           </div>
           {this.state.applePayEnabled > 0 &&
-            <div className="pure-u-1-3">
+            <div id="applepaybutton" className="pure-u-1-2">
               <button className={getClassName('applepay')} onClick={() => this.props.onType('applepay')}>Apple Pay</button>
             </div>
           }
+          <div className="pure-u-1-2">
+            <button className={getClassName('venmo')} onClick={() => this.props.onType('venmo')}>Venmo</button>
+          </div>
+          <div className="pure-u-1-2">
+            <button className={getClassName('paypal')} onClick={() => this.props.onType('paypal')}>PayPal</button>
+          </div>
+          <div className="pure-u-1-2">
+            <button className={getClassName('squarecash')} onClick={() => this.props.onType('squarecash')}>Square Cash</button>
+          </div>
+          <div id="lastButton" className="pure-u-1-2">
+            <button className={getClassName('creditcard')} onClick={() => this.props.onType('creditcard')}>Credit Card</button>
+          </div>
         </div>
       </div>
     );

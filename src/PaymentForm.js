@@ -18,8 +18,11 @@ function AmountField(props) {
   return (
     <form className="pure-form pure-form-stacked payment-form">
       <fieldset>
-        <label htmlFor="amount">Pay Jack</label>
-        <input id="amount" type="number" value={props.amount} onChange={props.onChange} />
+        <label htmlFor="amount"><h1>Pay Jack</h1></label>
+        <div className="container">
+          <p id="dollarsign">$</p>
+          <input id="amount" type="number" pattern="\d*" value={props.amount} onChange={props.onChange} />
+        </div>
       </fieldset>
     </form>
   );
