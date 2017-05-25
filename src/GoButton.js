@@ -5,7 +5,7 @@ const LIVEMODE = true;
 const STRIPE_TEST_KEY = 'pk_test_5s2Vc5ZM6phLbvYeRF72lcA5';
 const STRIPE_LIVE_KEY = 'pk_live_QoGt8JpXCbfBuiipW6CtMxmg';
 const STRIPE_KEY = LIVEMODE ? STRIPE_LIVE_KEY : STRIPE_TEST_KEY;
-const BACKEND = 'https://runkit.io/jack/59019ef9cb079300129c7040/branches/master/charges';
+const BACKEND = 'https://jack.runkit.io/59019ef9cb079300129c7040/branches/master/charges';
 
 const serialize = function(obj) {
   var str = [];
